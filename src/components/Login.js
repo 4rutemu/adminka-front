@@ -8,13 +8,10 @@ const sendLogIn = () => {
 
     formData.forEach((value, key) => object[key] = value);
 
-    const {email, jwt} = logIn(object)
-        .then((response) => response.data)
-        .catch(() => {
-            throw new Error('json parsing error');
-        });
+    logIn(object)
+        .then((response) => sessionStorage.setItem('Token', response['token']));
 
-    sessionStorage.setItem('Token', jwt)
+
     console.log(sessionStorage.getItem('Token'))
 }
 
