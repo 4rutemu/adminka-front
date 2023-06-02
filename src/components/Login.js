@@ -1,9 +1,6 @@
 import {Form} from "react-bootstrap";
 import {logIn} from "../api/api";
 
-const resolveResponse = (response) => {
-    return response.body;
-}
 
 const sendLogIn = () => {
     const object = {};
@@ -11,9 +8,13 @@ const sendLogIn = () => {
 
     formData.forEach((value, key) => object[key] = value);
 
-    const jwt = logIn(JSON.stringify(object)).then((response) => resolveResponse(response));
+    const {email, jwt} = logIn(object)
+        .then((response) => response.data)
+        .catch(() => {
+            throw new Error('json parsing error');
+        });
 
-    sessionStorage.setItem('Token', jwt)
+    sessionStorage.setItem('Token', jwt.value())
     console.log(sessionStorage.getItem('Token'))
 }
 
