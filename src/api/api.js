@@ -1,4 +1,4 @@
-const BASE_URL = 'localhost/api'; //TODO связать через ссылку на локал хост
+const BASE_URL = 'localhost:8080/api'; //TODO связать через ссылку на локал хост
 const Route = {
     GET_DATA: '/data',
     SEND_DATA: '/',

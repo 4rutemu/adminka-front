@@ -1,7 +1,7 @@
 import {useState} from "react";
 
 function MainPage() {
-    const [isManager, setIsManager] = useState(false)
+    const [isManager, setIsManager] = useState(true)
 
     return (
         <div className="container" align="center">
