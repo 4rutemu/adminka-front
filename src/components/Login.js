@@ -14,7 +14,7 @@ const sendLogIn = () => {
             throw new Error('json parsing error');
         });
 
-    sessionStorage.setItem('Token', jwt.value())
+    sessionStorage.setItem('Token', jwt)
     console.log(sessionStorage.getItem('Token'))
 }
 
