@@ -8,7 +8,7 @@ const sendLogIn = () => {
 
     formData.forEach((value, key) => object[key] = value);
 
-    logIn(object)
+    logIn(JSON.stringify(object))
         .then((response) => sessionStorage.setItem('Token', response['token']));
 
 
