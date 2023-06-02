@@ -2,7 +2,7 @@ import {Form} from "react-bootstrap";
 import {logIn} from "../api/api";
 
 const resolveResponse = (response) => {
-    return response.body;
+    return response.body.token;
 }
 
 const sendLogIn = () => {

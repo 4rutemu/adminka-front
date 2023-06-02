@@ -23,7 +23,10 @@ const ErrorText = {
 };
 
 const load = (route, role = Role.AUTH, errorText, method = Method.GET, body = null) =>
-    fetch(`${BASE_URL}${role}${route}`, {method, body})
+    fetch(`${BASE_URL}${role}${route}`, {method, body, headers:{
+            'Access-Control-Allow-Origin': '*',
+            'Content-Type': 'application/json'
+        }})
         .then((response) => {
             if (!response.ok) {
                 throw new Error();
@@ -41,7 +44,7 @@ const createUser = (body) => load(Route.CREATE_USER, Role.ADMIN, ErrorText.SEND_
 
 const logIn = (body) => load(Route.LOGIN, Role.AUTH, ErrorText.SEND_DATA, Method.POST, body);
 
-const getAllProducts = () => load(Route.GET_ALL_PRODUCTS, Role.MANAGER, ErrorText.GET_DATA);
+const getAllProducts = () => {load(Route.GET_ALL_PRODUCTS, Role.MANAGER, ErrorText.GET_DATA)};
 
 const getAllCategories = () => load(Route.GET_ALL_CATEGORIES, Role.MANAGER, ErrorText.GET_DATA);
 
