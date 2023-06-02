@@ -1,13 +1,17 @@
 import {Form} from "react-bootstrap";
 import {logIn} from "../api/api";
 
+const resolveResponse = (response) => {
+    return response.body;
+}
+
 const sendLogIn = () => {
     const object = {};
     const formData = new FormData(document.querySelector('.login-form'));
 
     formData.forEach((value, key) => object[key] = value);
 
-    const jwt = logIn(JSON.stringify(object));
+    const jwt = logIn(JSON.stringify(object)).then((response) => resolveResponse(response));
 
     sessionStorage.setItem('Token', jwt)
     console.log(sessionStorage.getItem('Token'))

@@ -1,7 +1,7 @@
 import {useState} from "react";
 
-function MainPage() {
-    const [isManager, setIsManager] = useState(true)
+function MainPage(props) {
+
 
     return (
         <div className="container" align="center">
@@ -10,7 +10,7 @@ function MainPage() {
                     Вы попали на главную страницу нашего CRM<br/>
                 </p>
                 <br/>
-            {isManager ? (
+            {props.isManager ? (
                 <div>
                     <h3 className="display-5">Вы Менеджер</h3>
                     <p className="lead">

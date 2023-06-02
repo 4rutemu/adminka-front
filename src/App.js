@@ -13,6 +13,8 @@ import CreateUser from "./components/CreateUser";
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(true);
+  const [isManager, setIsManager] = useState(false);
+
 
   return (
       <div>
@@ -20,7 +22,7 @@ function App() {
             <Router>
                 <Navbar />
                 <Routes>
-                    <Route exact path='/main' element={<MainPage />} />
+                    <Route exact path='/main' element={<MainPage isManager={isManager} />} />
                     <Route path='/workers' element={<Workers />} />
                     <Route path='/products' element={<Products />} />
                     <Route path='/categories' element={<Categories />} />
