@@ -22,8 +22,10 @@ const ErrorText = {
     SEND_DATA: 'Не удалось отправить форму. Попробуйте ещё раз',
 };
 
-const load = (route, role = Role.AUTH, errorText, method = Method.GET,
-              jwt = sessionStorage.getItem('Token'), body = null) => {
+const load = (route, role = Role.AUTH, errorText,
+              jwt = null,
+              method = Method.GET,
+              body = null) => {
     if (!jwt) {
         return fetch(`${BASE_URL}${role}${route}`, {
             method, body, headers: {
@@ -60,7 +62,7 @@ const load = (route, role = Role.AUTH, errorText, method = Method.GET,
     }
 }
 
-const getAllUsers = () => load(Route.GET_ALL_USERS, Role.ADMIN, ErrorText.GET_DATA);
+const getAllUsers = () => load(Route.GET_ALL_USERS, Role.ADMIN, ErrorText.GET_DATA, sessionStorage.getItem('Token'));
 
 const createUser = (body) => load(Route.CREATE_USER, Role.ADMIN, ErrorText.SEND_DATA, Method.POST, body);
 
