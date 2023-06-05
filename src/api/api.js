@@ -29,8 +29,8 @@ const load = (route, role = Role.AUTH, errorText,
     if (!jwt) {
         return fetch(`${BASE_URL}${role}${route}`, {
             method, body, headers: {
-                'Access-Control-Allow-Origin': '*',
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                'Accept-Type': 'application/json'
             }
         })
             .then((response) => {
@@ -45,8 +45,8 @@ const load = (route, role = Role.AUTH, errorText,
     } else {
         return fetch(`${BASE_URL}${role}${route}`, {
             method, body, headers: {
-                'Access-Control-Allow-Origin': '*',
                 'Content-Type': 'application/json',
+                'Accept-Type': 'application/json',
                 'Authorization': jwt
             }
         })
