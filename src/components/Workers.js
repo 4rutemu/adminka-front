@@ -9,7 +9,7 @@ function Workers(props) {
         const workers = new Array();
 
         await getAllUsers()
-            .then((response) => response.forEach((value) => workers.push(renderWorker(value))))
+            .then((response) => response.json.forEach((value) => workers.push(renderWorker(value))))
 
         return workers;
     }
