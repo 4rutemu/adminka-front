@@ -1,12 +1,13 @@
 import Worker from "./Worker";
 import {getAllUsers} from "../api/api";
+import {useState} from "react";
 
 function Workers(props) {
-    const workers = new Array();
+    const [workers, setWorkers] = useState(new Array());
 
     const getWorkers = async () => {
         await getAllUsers()
-            .then((response) => response.forEach((value) => workers.push(renderWorker(value))))
+            .then((response) => response.forEach((value) => setWorkers(workers.push(renderWorker(value)))))
     }
 
     const renderWorker = (obj) => {
