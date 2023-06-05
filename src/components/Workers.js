@@ -30,6 +30,7 @@ function Workers(props) {
                         </tr>
                         </thead>
                         <tbody className="table-group-divider">
+                            {getWorkers()}
                             {workers}
                         </tbody>
                     </table>
