@@ -3,11 +3,15 @@ import {getAllUsers} from "../api/api";
 import {useState} from "react";
 
 function Workers(props) {
-    const [workers, setWorkers] = useState(new Array());
+    // const [workers, setWorkers] = useState(new Array());
 
     const getWorkers = async () => {
+        const workers = new Array();
+
         await getAllUsers()
-            .then((response) => response.forEach((value) => setWorkers(workers.push(renderWorker(value)))))
+            .then((response) => response.forEach((value) => workers.push(renderWorker(value))))
+
+        return workers;
     }
 
     const renderWorker = (obj) => {
@@ -31,7 +35,6 @@ function Workers(props) {
                         </thead>
                         <tbody className="table-group-divider">
                             {getWorkers()}
-                            {workers}
                         </tbody>
                     </table>
                 </form>
