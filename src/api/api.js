@@ -25,7 +25,7 @@ const ErrorText = {
 const load = (route, role = Role.AUTH, errorText, method = Method.GET,
               jwt = sessionStorage.getItem('Token'), body = null) => {
     if (!jwt) {
-        fetch(`${BASE_URL}${role}${route}`, {
+        return fetch(`${BASE_URL}${role}${route}`, {
             method, body, headers: {
                 'Access-Control-Allow-Origin': '*',
                 'Content-Type': 'application/json'
@@ -41,7 +41,7 @@ const load = (route, role = Role.AUTH, errorText, method = Method.GET,
                 throw new Error(errorText);
             });
     } else {
-        fetch(`${BASE_URL}${role}${route}`, {
+        return fetch(`${BASE_URL}${role}${route}`, {
             method, body, headers: {
                 'Access-Control-Allow-Origin': '*',
                 'Content-Type': 'application/json',
