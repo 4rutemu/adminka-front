@@ -1,11 +1,11 @@
-function Worker() {
+function Worker(props) {
     return (
         <tr align="center">
-            <td>dsawd</td>
-            <td>wdsaw</td>
-            <td>sawd</td>
-            <td>awdsaw</td>
-            <td>awdsaw</td>
+            <td>{props.worker.id}</td>
+            <td>{props.worker.workerName}</td>
+            <td>{props.worker.workerSurName}</td>
+            <td>{props.worker.workerLastName}</td>
+            <td>{props.worker.role}</td>
         </tr>
     )
 }

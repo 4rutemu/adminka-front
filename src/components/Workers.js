@@ -1,6 +1,18 @@
 import Worker from "./Worker";
+import {getAllUsers} from "../api/api";
 
-function Workers() {
+function Workers(props) {
+    const workers = new Array();
+
+    const getWorkers = async () => {
+        await getAllUsers()
+            .then((response) => response.forEach((value) => workers.push(renderWorker(value))))
+    }
+
+    const renderWorker = (obj) => {
+        return (<Worker worker={obj} />)
+    }
+
     return (
         <div>
             <p align="center" className="display-4 m-3">Сотрудники компании</p>
@@ -9,15 +21,15 @@ function Workers() {
                     <table className="table mb-3" align="center">
                         <thead className="table-dark">
                         <tr align="center">
-                            <th scope="col">Имя сотрудника</th>
-                            <th scope="col">Номер телефона</th>
-                            <th scope="col">E-Mail</th>
+                            <th scope="col">Id</th>
+                            <th scope="col">Имя</th>
+                            <th scope="col">Фамилия</th>
+                            <th scope="col">Отчество</th>
                             <th scope="col">Позиция</th>
-                            <th scope="col">Личный номер</th>
                         </tr>
                         </thead>
                         <tbody className="table-group-divider">
-                            <Worker />
+                            {workers}
                         </tbody>
                     </table>
                 </form>
