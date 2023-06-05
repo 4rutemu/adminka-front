@@ -10,6 +10,7 @@ import Workers from "./components/Workers";
 import Products from "./components/Products";
 import Categories from "./components/Categories";
 import CreateUser from "./components/CreateUser";
+import {Form} from "react-bootstrap";
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -30,7 +31,7 @@ function App() {
                 </Routes>
             </Router>
         ) : (
-            <Login/>
+            <Login setIsLoggedIn = {setIsLoggedIn}/>
         )}
       </div>
   );

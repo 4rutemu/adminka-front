@@ -2,20 +2,24 @@ import {Form} from "react-bootstrap";
 import {logIn} from "../api/api";
 
 
-const sendLogIn = () => {
-    const object = {};
-    const formData = new FormData(document.querySelector('.login-form'));
-
-    formData.forEach((value, key) => object[key] = value);
-
-    logIn(JSON.stringify(object))
-        .then((response) => sessionStorage.setItem('Token', response['token']));
 
 
-    console.log(sessionStorage.getItem('Token'))
-}
+function Login(props) {
+    const sendLogIn = async () => {
+        const object = {};
+        const formData = new FormData(document.querySelector('.login-form'));
 
-function Login() {
+        formData.forEach((value, key) => object[key] = value);
+
+        await logIn(JSON.stringify(object))
+            .then((response) => sessionStorage.setItem('Token', response['token']));
+
+
+        console.log(sessionStorage.getItem('Token'))
+
+        props.setIsLoggedIn(true)
+    }
+
     return (
         <div className="App">
             <h2 align="center" className="display-4">Войдите в CRM</h2>
