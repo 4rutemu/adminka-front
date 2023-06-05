@@ -17,7 +17,7 @@ function Login(props) {
 
         console.log(sessionStorage.getItem('Token'))
 
-        props.setIsLoggedIn(true)
+        props.setIsLoggedIn();
     }
 
     return (

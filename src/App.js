@@ -15,6 +15,10 @@ function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [isManager, setIsManager] = useState(false);
 
+    function doLogIn() {
+        setIsLoggedIn(true);
+    }
+
 
   return (
       <div>
@@ -30,7 +34,7 @@ function App() {
                 </Routes>
             </Router>
         ) : (
-            <Login setIsLoggedIn = {setIsLoggedIn}/>
+            <Login setIsLoggedIn = {doLogIn()}/>
         )}
       </div>
   );
