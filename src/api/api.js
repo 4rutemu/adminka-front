@@ -22,21 +22,43 @@ const ErrorText = {
     SEND_DATA: 'Не удалось отправить форму. Попробуйте ещё раз',
 };
 
-const load = (route, role = Role.AUTH, errorText, method = Method.GET, body = null) =>
-    fetch(`${BASE_URL}${role}${route}`, {method, body, headers:{
-            'Access-Control-Allow-Origin': '*',
-            'Content-Type': 'application/json'
-        }})
-        .then((response) => {
-            if (!response.ok) {
-                throw new Error();
+const load = (route, role = Role.AUTH, errorText, method = Method.GET,
+              jwt = sessionStorage.getItem('Token'), body = null) => {
+    if (!jwt) {
+        fetch(`${BASE_URL}${role}${route}`, {
+            method, body, headers: {
+                'Access-Control-Allow-Origin': '*',
+                'Content-Type': 'application/json'
             }
-            return response.json();
         })
-        .catch(() => {
-            throw new Error(errorText);
-        });
-
+            .then((response) => {
+                if (!response.ok) {
+                    throw new Error();
+                }
+                return response.json();
+            })
+            .catch(() => {
+                throw new Error(errorText);
+            });
+    } else {
+        fetch(`${BASE_URL}${role}${route}`, {
+            method, body, headers: {
+                'Access-Control-Allow-Origin': '*',
+                'Content-Type': 'application/json',
+                'Authorization': jwt
+            }
+        })
+            .then((response) => {
+                if (!response.ok) {
+                    throw new Error();
+                }
+                return response.json();
+            })
+            .catch(() => {
+                throw new Error(errorText);
+            });
+    }
+}
 
 const getAllUsers = () => load(Route.GET_ALL_USERS, Role.ADMIN, ErrorText.GET_DATA);
 
