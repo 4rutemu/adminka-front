@@ -12,7 +12,7 @@ import Categories from "./components/Categories";
 import CreateUser from "./components/CreateUser";
 
 function App() {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(true);
   const [isManager, setIsManager] = useState(false);
 
     function doLogIn() {
